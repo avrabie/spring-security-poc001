@@ -26,7 +26,7 @@ public class HelloWorldController {
         return Mono.just("This is USER!");
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")  //this is awesome
     @GetMapping("/admin")
     public Mono<String> sayGreetingAdmin() {
         return Mono.just("Admin realm!");
