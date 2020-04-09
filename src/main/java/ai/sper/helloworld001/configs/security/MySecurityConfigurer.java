@@ -1,14 +1,14 @@
-package ai.sper.helloworld001.configs;
+package ai.sper.helloworld001.configs.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 
-@EnableWebFluxSecurity
+@Configuration
 public class MySecurityConfigurer {
 
 
@@ -47,25 +47,5 @@ public class MySecurityConfigurer {
         return http.build();
     }
 
-// MyReactiveUserDetailsService
-//    public MapReactiveUserDetailsService userDetailsService() {
-//        UserDetails user1 = User
-//                .withUsername("user")
-//                .password(passwordEncoder().encode("password"))
-////                .roles("USER")
-//                .authorities("ROLE_INNA", "ROLE_USER")
-//                .build();
-//        UserDetails user2 = User
-//                .withUsername("company")
-//                .password(passwordEncoder().encode("password"))
-//                .roles("COMPANY")
-//                .build();
-//        UserDetails user3 = User
-//                .withUsername("admin")
-//                .password(passwordEncoder().encode("password"))
-//                .roles("ADMIN", "SUPER_ADMIN", "USER")
-//                .build();
-//        return new MapReactiveUserDetailsService(user1, user2, user3);
-//    }
 
 }

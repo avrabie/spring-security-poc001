@@ -13,11 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class UserService implements ReactiveUserDetailsService {
+public class UserService {
 
     private List<UserDetails> userDetails;
 
-    public UserService(PasswordEncoder passwordEncoder) {
+    private UserService(PasswordEncoder passwordEncoder) {
 
         UserDetails user1 = User
                 .withUsername("user")
@@ -44,7 +44,6 @@ public class UserService implements ReactiveUserDetailsService {
     }
 
 
-    @Override
     public Mono<UserDetails> findByUsername(String username) {
         return Flux.fromIterable(userDetails)
                 .filter(user -> user.getUsername().equals(username))
