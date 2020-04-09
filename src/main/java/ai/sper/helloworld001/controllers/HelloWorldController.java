@@ -1,8 +1,11 @@
 package ai.sper.helloworld001.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -37,5 +40,9 @@ public class HelloWorldController {
         return Mono.just("Company realm!");
     }
 
+    @GetMapping(value = "/authenticate/{user}/{pass}")
+    public Mono<String> sayCompany(@PathVariable String user, @PathVariable String pass) {
+        return Mono.just("Company realm!");
+    }
 
 }

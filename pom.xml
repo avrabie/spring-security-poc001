@@ -19,6 +19,24 @@
     </properties>
 
     <dependencies>
+<!--        compile 'io.springfox:springfox-swagger2:3.0.0-SNAPSHOT'-->
+<!--        compile 'io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT'-->
+<!--        compile 'io.springfox:springfox-spring-webflux:3.0.0-SNAPSHOT'-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-spring-webflux</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,5 +90,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>3</id>
+            <name>whatever</name>
+            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
+        </repository>
+    </repositories>
 
 </project>
