@@ -1,12 +1,9 @@
 package ai.sper.helloworld001.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import ai.sper.helloworld001.models.LoginRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -19,7 +16,7 @@ public class HelloWorldController {
     }
 
 
-    @GetMapping("/hello")
+    @GetMapping("/hello") //this one should get overriden
     public Mono<String> sayGreeting() {
         return Mono.just("Hello World!!!");
     }
@@ -43,6 +40,11 @@ public class HelloWorldController {
     @GetMapping(value = "/authenticate/{user}/{pass}")
     public Mono<String> sayCompany(@PathVariable String user, @PathVariable String pass) {
         return Mono.just("Company realm!");
+    }
+
+    @PostMapping("/auth/user")
+    public Mono<LoginRequest> thisIsUser(@RequestBody LoginRequest loginRequest) {
+        return Mono.just(loginRequest);
     }
 
 }
