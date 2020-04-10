@@ -5,15 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.context.ServerSecurityContextRepository;
 import reactor.core.publisher.Mono;
 
 
@@ -28,20 +24,19 @@ public class MySecurityConfigurer {
     private MyServerSecurityContextRepository securityContextRepository;
 
 
-
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        String[] patterns = new String[] {"/auth/**","/"};
+        String[] patterns = new String[]{"/auth/**", "/"};
         http.cors().disable()
-                .exceptionHandling()
+                .exceptionHandling() // TODO: 4/10/20 this needs to be implemented
                 .authenticationEntryPoint((swe, e) -> Mono.fromRunnable(() -> {
-                    swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                    swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED); // TODO: 4/10/20 make some custom responses here
                 }))
                 .accessDeniedHandler((swe, e) -> Mono.fromRunnable(() -> {
                     swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
                 }))
                 .and()
-                .csrf().disable()
+                .csrf().disable() // TODO: 4/10/20 investigate if we can enable it with UI
                 .authenticationManager(authenticationManager)
                 .securityContextRepository(securityContextRepository)
                 .authorizeExchange()
@@ -79,7 +74,7 @@ public class MySecurityConfigurer {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return NoOpPasswordEncoder.getInstance(); // TODO: 4/10/20 Of course!
 //        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 

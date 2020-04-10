@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 import java.util.List;
 
+// TODO: 4/10/20 research and extend functionality
 public class AuthenticatedUser implements Authentication {
     private String username;
     private List authorities;

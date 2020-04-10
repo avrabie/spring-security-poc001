@@ -12,6 +12,7 @@ public class SigProject {
     private Right right;
 
     public enum  Right {
+        // TODO: 4/10/20 refactor these
         READ, WRITE, NONE;
     }
 }

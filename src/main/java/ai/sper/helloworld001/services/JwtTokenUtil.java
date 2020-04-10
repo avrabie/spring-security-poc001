@@ -19,7 +19,7 @@ public class JwtTokenUtil {
     // TODO: 4/10/20 get from env properties
     private static final String SIGNING_KEY = "mySecret";
 
-
+    // TODO: 4/10/20 Create a DB User and a Custom User that integrates (implements) UserDetails from security
     public String generateToken(UserDetails user) {
         final List authorities = user.getAuthorities().stream()
                 .map(authority -> authority.getAuthority())
@@ -47,7 +47,7 @@ public class JwtTokenUtil {
                 .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 60 * 20 * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + 60 * 20 * 1000)) // TODO: 4/10/20 externalize to env
                 .compact();
     }
 
